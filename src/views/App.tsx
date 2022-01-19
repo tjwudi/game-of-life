@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './App.css';
+import '../App.css';
 import GameCanvas from './GameCanvas';
 import GameControls from './GameControls';
-import useGameMapModel from './useGameMapModel';
+import { useGameMapModel } from '../game';
 
 function App() {
   const gameMap = useGameMapModel()

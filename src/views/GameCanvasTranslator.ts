@@ -1,6 +1,6 @@
-import { CANVAS_CELL_LENGTH } from "./Constants"
+import { CANVAS_CELL_LENGTH } from "../Constants"
 
-export default class GameMapCanvasTranslator {
+export default class GameCanvasTranslator {
     static m2c(rid: number, cid: number): { x: number, y: number } {
         return {
             x: cid * CANVAS_CELL_LENGTH,

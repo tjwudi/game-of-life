@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import GameMapModel from "./GameMapModel";
+import { GameMapModel }  from "../game";
 
 type Props = { gameMap: GameMapModel }
 

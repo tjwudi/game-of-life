@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { COUNT_COLUMNS, COUNT_ROWS } from "./Constants";
+import { COUNT_COLUMNS, COUNT_ROWS } from "../Constants";
 import GameMapModel from "./GameMapModel";
 
 const defaultGameMap = new GameMapModel(COUNT_ROWS, COUNT_COLUMNS)

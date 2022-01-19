@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
-import { CANVAS_CELL_LENGTH, CANVAS_HEIGHT, CANVAS_WIDTH } from "./Constants";
-import GameMapCanvasTranslator from "./GameMapCanvasTranslator";
-import GameMapModel from "./GameMapModel";
+import { CANVAS_CELL_LENGTH, CANVAS_HEIGHT, CANVAS_WIDTH } from "../Constants";
+import GameCanvasTranslator from "./GameCanvasTranslator";
+import { GameMapModel } from "../game";
 
 type Props = { gameMap: GameMapModel }
 
@@ -43,9 +43,13 @@ export default function GameCanvas({ gameMap }: Props) {
         for (let rid = 0; rid < gameMap.rowCount(); rid ++) {
             for (let cid = 0; cid < gameMap.columnCount(); cid ++) {
                 if (gameMap.isAliveAt(rid, cid)) {
-                    const {x, y} = GameMapCanvasTranslator.m2c(rid, cid)
+                    const {x, y} = GameCanvasTranslator.m2c(rid, cid)
 
-                    context.fillStyle = "green"
+                    if (gameMap.isStarvingAt(rid, cid)) {
+                        context.fillStyle = "red"
+                    } else {
+                        context.fillStyle = "green"
+                    }
                     context.fillRect(x + 1, y + 1, CANVAS_CELL_LENGTH - 2, CANVAS_CELL_LENGTH - 1)
                 }
             }
@@ -61,7 +65,7 @@ export default function GameCanvas({ gameMap }: Props) {
         const rect = canvas.getBoundingClientRect()
         const x = event.clientX - rect.left
         const y = event.clientY - rect.top
-        const {rid, cid} = GameMapCanvasTranslator.c2m(x, y)
+        const {rid, cid} = GameCanvasTranslator.c2m(x, y)
         
         gameMap.toggleAt(rid, cid)
     }, [gameMap])
